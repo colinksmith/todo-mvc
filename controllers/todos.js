@@ -12,7 +12,7 @@ module.exports = {
     },
     createTodo: async (req, res)=>{
         try{
-            await Todo.create({todo: req.body.todoItem, completed: false})
+            await Todo.create({todo: req.body.todoItem, completed: false, priority: 'medium'})
             console.log('Todo has been added!')
             res.redirect('/todos')
         }catch(err){
@@ -50,5 +50,16 @@ module.exports = {
         }catch(err){
             console.log(err)
         }
-    }
+    },
+    updatePriority: async (req, res)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                priority: req.body.todoPriorityFromJSFile
+            })
+            console.log('Marked Complete')
+            res.json('Marked Complete')
+        }catch(err){
+            console.log(err)
+        }
+    },
 }    

@@ -8,7 +8,11 @@ const TodoSchema = new mongoose.Schema({
   completed: {
     type: Boolean,
     required: true,
-  }
+  },
+  priority: {
+    type: String,
+    required: true,
+  },
 })
 
-module.exports = mongoose.model('Todo', TodoSchema)
+module.exports = mongoose.model('TodoPriority', TodoSchema)

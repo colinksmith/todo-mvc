@@ -10,12 +10,42 @@
 <body>
     <h1>Todos</h1>
     <ul>
-    <% todos.forEach( el => { %>
+    <% todos.filter(el => el.priority === 'high')
+            .forEach( el => { %>
         <li class='todoItem' data-id='<%=el._id%>'>
             <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
             <span class='del'> Delete </span>
+            <select class='prioritySelector' name='priority'>
+                <option value='high' <%= el.priority === 'high' ? 'selected' : ''%>>High Priority</option>
+                <option value='medium' <%= el.priority === 'medium' ? 'selected' : ''%>>Medium Priority</option>
+                <option value='low' <%= el.priority === 'low' ? 'selected' : ''%>>Low Priority</option>
+            </select>
         </li>
     <% }) %>    
+    <% todos.filter(el => el.priority === 'medium')
+            .forEach( el => { %>
+        <li class='todoItem' data-id='<%=el._id%>'>
+            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+            <span class='del'> Delete </span>
+            <select class='prioritySelector' name='priority'>
+                <option value='high' <%= el.priority === 'high' ? 'selected' : ''%>>High Priority</option>
+                <option value='medium' <%= el.priority === 'medium' ? 'selected' : ''%>>Medium Priority</option>
+                <option value='low' <%= el.priority === 'low' ? 'selected' : ''%>>Low Priority</option>
+            </select>
+        </li>
+    <% }) %>  
+    <% todos.filter(el => el.priority === 'low')
+            .forEach( el => { %>
+        <li class='todoItem' data-id='<%=el._id%>'>
+            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+            <span class='del'> Delete </span>
+            <select class='prioritySelector' name='priority'>
+                <option value='high' <%= el.priority === 'high' ? 'selected' : ''%>>High Priority</option>
+                <option value='medium' <%= el.priority === 'medium' ? 'selected' : ''%>>Medium Priority</option>
+                <option value='low' <%= el.priority === 'low' ? 'selected' : ''%>>Low Priority</option>
+            </select>
+        </li>
+    <% }) %>  
     </ul>
 
     <h2>Things left to do: <%= left %></h2>
